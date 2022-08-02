@@ -9,7 +9,7 @@ using MvcMovieSpa.Models;
 
 namespace MvcMovieSpa.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class MoviesController : ControllerBase
     {
@@ -24,10 +24,10 @@ namespace MvcMovieSpa.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Movie>>> GetMovie()
         {
-          if (_context.Movie == null)
-          {
-              return NotFound();
-          }
+            if (_context.Movie == null)
+            {
+                return NotFound();
+            }
             return await _context.Movie.ToListAsync();
         }
 
@@ -35,10 +35,10 @@ namespace MvcMovieSpa.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Movie>> GetMovie(int id)
         {
-          if (_context.Movie == null)
-          {
-              return NotFound();
-          }
+            if (_context.Movie == null)
+            {
+                return NotFound();
+            }
             var movie = await _context.Movie.FindAsync(id);
 
             if (movie == null)
@@ -85,10 +85,10 @@ namespace MvcMovieSpa.Controllers
         [HttpPost]
         public async Task<ActionResult<Movie>> PostMovie(Movie movie)
         {
-          if (_context.Movie == null)
-          {
-              return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
-          }
+            if (_context.Movie == null)
+            {
+                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+            }
             _context.Movie.Add(movie);
             await _context.SaveChangesAsync();
 
