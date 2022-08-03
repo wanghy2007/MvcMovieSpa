@@ -1,42 +1,45 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-export class DetailsMovie extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { movie: {}, loading: true };
-    }
+function renderMovie(movie) {
+    return (
+        <dl className="row">
+            <dt>Title</dt>
+            <dd>{movie.title}</dd>
+            <dt>Release Date</dt>
+            <dd>{movie.releaseDate}</dd>
+            <dt>Genre</dt>
+            <dd>{movie.genre}</dd>
+            <dt>Price</dt>
+            <dd>{movie.price}</dd>
+        </dl>
+    );
+}
 
-    componentDidMount() {
-        this.populateMovieData();
-    }
+export function DetailsMovie() {
+    const { id } = useParams();
+    const [movie, setMovie] = useState({});
+    const [loading, setLoading] = useState(true);
 
-    static renderMovie(movie) {
-        return (
-            <dl className="row">
-                <dt>Title</dt>
-                <dd>{movie.title}</dd>
-            </dl>
-        );
-    }
+    useEffect(() => {
+        async function fetchData() {
+            const response = await fetch(`movies/${id}`);
+            const data = await response.json();
+            setMovie(data);
+            setLoading(false);
+        }
+        fetchData();
+    });
 
-    render() {
-        let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
-            : DetailsMovie.renderMovie(this.state.movie);
-        
-        return (
-            <div>
-                <h1>Details</h1>
-                <hr/>
-                {contents}
-            </div>
-        );
-    }
+    let contents = loading
+        ? <p><em>Loading...</em></p>
+        : renderMovie(movie);
 
-    async populateMovieData() {
-        const id = window.location.pathname.split('/').pop();
-        const response = await fetch(`movies/${id}`);
-        const data = await response.json();
-        this.setState({ movie: data, loading: false });
-    }
+    return (
+        <div>
+            <h1>Details</h1>
+            <hr/>
+            {contents}
+        </div>
+    );
 }
