@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { NavLink } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
-export class FetchMovie extends Component {
-  static displayName = FetchMovie.name;
+export class ListMovie extends Component {
+  static displayName = ListMovie.name;
 
   constructor(props) {
     super(props);
@@ -21,6 +23,7 @@ export class FetchMovie extends Component {
             <th>Release Date</th>
             <th>Genre</th>
             <th>Price</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -30,6 +33,9 @@ export class FetchMovie extends Component {
               <td>{movie.releaseDate}</td>
               <td>{movie.genre}</td>
               <td>{movie.price}</td>
+              <td>
+                <NavLink tag={Link} to={`/details-movie/${movie.id}`}>Details</NavLink>
+              </td>
             </tr>
           )}
         </tbody>
@@ -40,7 +46,7 @@ export class FetchMovie extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : FetchMovie.renderMoviesTable(this.state.movies);
+      : ListMovie.renderMoviesTable(this.state.movies);
 
     return (
       <div>

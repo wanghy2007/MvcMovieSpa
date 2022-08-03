@@ -1,6 +1,7 @@
 import { Counter } from "./components/Counter";
 import { FetchData } from "./components/FetchData";
-import { FetchMovie } from './components/FetchMovie';
+import { ListMovie } from './components/ListMovie';
+import { DetailsMovie } from "./components/DetailsMovie";
 import { Home } from "./components/Home";
 
 const AppRoutes = [
@@ -17,9 +18,13 @@ const AppRoutes = [
     element: <FetchData />
   },
   {
-    path: '/fetch-movie',
-    element: <FetchMovie />
-  }
+    path: '/list-movie',
+    element: <ListMovie />
+  },
+  {
+    path: '/details-movie/:id',
+    element: <DetailsMovie />
+  },
 ];
 
 export default AppRoutes;
