@@ -43,7 +43,7 @@ export function ListMovie() {
       setLoading(false);
     }
     fetchData();
-  });
+  }, []);
 
   let contents = loading
       ? <p><em>Loading...</em></p>

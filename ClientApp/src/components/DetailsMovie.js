@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { NavLink } from 'reactstrap';
 
 function renderMovie(movie) {
     return (
         <dl className="row">
-            <dt>Title</dt>
-            <dd>{movie.title}</dd>
-            <dt>Release Date</dt>
-            <dd>{movie.releaseDate}</dd>
-            <dt>Genre</dt>
-            <dd>{movie.genre}</dd>
-            <dt>Price</dt>
-            <dd>{movie.price}</dd>
+            <dt className="col-sm-2">Title</dt>
+            <dd className="col-sm-10">{movie.title}</dd>
+            <dt className="col-sm-2">Release Date</dt>
+            <dd className="col-sm-10">{movie.releaseDate}</dd>
+            <dt className="col-sm-2">Genre</dt>
+            <dd className="col-sm-10">{movie.genre}</dd>
+            <dt className="col-sm-2">Price</dt>
+            <dd className="col-sm-10">{movie.price}</dd>
         </dl>
     );
 }
@@ -29,7 +30,7 @@ export function DetailsMovie() {
             setLoading(false);
         }
         fetchData();
-    });
+    }, [id]);
 
     let contents = loading
         ? <p><em>Loading...</em></p>
@@ -38,8 +39,15 @@ export function DetailsMovie() {
     return (
         <div>
             <h1>Details</h1>
-            <hr/>
-            {contents}
+            <div>
+                <h4>Movie</h4>
+                <hr/>
+                {contents}
+            </div>
+            <div>
+            <NavLink tag={Link} to={`/edit-movie/${movie.id}`}>Edit</NavLink>
+            <NavLink tag={Link} to={`/list-movie`}>Back to list</NavLink>
+            </div>
         </div>
     );
 }
