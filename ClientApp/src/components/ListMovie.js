@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'reactstrap';
+import { Nav, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 export function ListMovie() {
@@ -41,6 +41,7 @@ export function ListMovie() {
               <td>{movie.genre}</td>
               <td>{movie.price}</td>
               <td>
+                <NavLink tag={Link} to={`/edit-movie/${movie.id}`}>Edit</NavLink>
                 <NavLink tag={Link} to={`/details-movie/${movie.id}`}>Details</NavLink>
               </td>
             </tr>
