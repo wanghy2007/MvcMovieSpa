@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { NavLink } from 'reactstrap';
 
 export function CreateMovie() {
@@ -10,6 +10,7 @@ export function CreateMovie() {
         genre: "",
         price: "",
     });
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -33,6 +34,7 @@ export function CreateMovie() {
                 price: formValues.price,
             }),
         });
+        navigate('/list-movie');
     };
 
     return (

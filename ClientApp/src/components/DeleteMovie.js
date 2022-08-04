@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { NavLink } from 'reactstrap';
 
 export function DeleteMovie() {
     const { id } = useParams();
     const [movie, setMovie] = useState({});
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchData() {
@@ -22,6 +23,7 @@ export function DeleteMovie() {
         await fetch(`movies/${id}`, {
             method: 'DELETE',
         });
+        navigate('/list-movie');
     };
 
     if (loading)

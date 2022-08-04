@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { NavLink } from 'reactstrap';
 
 export function EditMovie() {
@@ -12,6 +12,7 @@ export function EditMovie() {
         price: "",
     });
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchData() {
@@ -46,6 +47,7 @@ export function EditMovie() {
                 price: formValues.price,
             }),
         });
+        navigate('/list-movie');
     };
 
     if (loading)
