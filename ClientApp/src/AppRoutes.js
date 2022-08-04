@@ -3,6 +3,7 @@ import { FetchData } from "./components/FetchData";
 import { ListMovie } from './components/ListMovie';
 import { DetailsMovie } from "./components/DetailsMovie";
 import { EditMovie } from "./components/EditMovie";
+import { CreateMovie } from "./components/CreateMovie";
 import { Home } from "./components/Home";
 
 const AppRoutes = [
@@ -29,6 +30,10 @@ const AppRoutes = [
   {
     path: '/edit-movie/:id',
     element: <EditMovie />
+  },
+  {
+    path: '/create-movie',
+    element: <CreateMovie />
   },
 ];
 

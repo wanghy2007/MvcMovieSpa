@@ -1,27 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { NavLink } from 'reactstrap';
 
-export function EditMovie() {
+export function CreateMovie() {
     const { id } = useParams();
     const [formValues, setFormValues] = useState({
-        id: "",
         title: "",
         releaseDate: "",
         genre: "",
         price: "",
     });
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        async function fetchData() {
-            const response = await fetch(`movies/${id}`);
-            const data = await response.json();
-            setFormValues(data);
-            setLoading(false);
-        }
-        fetchData();
-    }, [id]);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -35,11 +23,10 @@ export function EditMovie() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await fetch(`movies/${id}`, {
-            method: 'PUT',
+        await fetch(`movies/`, {
+            method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                id: formValues.id,
                 title: formValues.title,
                 releaseDate: formValues.releaseDate,
                 genre: formValues.genre,
@@ -48,12 +35,9 @@ export function EditMovie() {
         });
     };
 
-    if (loading)
-      return <p><em>Loading...</em></p>
-
     return (
         <>
-            <h1>Edit</h1>
+            <h1>Create</h1>
             <h4>Movie</h4>
             <hr/>
             <div className="row">

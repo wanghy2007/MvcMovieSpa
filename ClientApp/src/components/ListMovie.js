@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Nav, NavLink } from 'reactstrap';
+import { NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 export function ListMovie() {
@@ -21,9 +21,11 @@ export function ListMovie() {
   
   return (
     <div>
-      <h1 id="tabelLabel" >Movies</h1>
-      <p>This component demonstrates fetching movie from the server.</p>
-      <table className='table table-striped' aria-labelledby="tabelLabel">
+      <h1>Index</h1>
+      <p>
+        <NavLink tag={Link} to='/create-movie/'>Create</NavLink>
+      </p>
+      <table className='table'>
         <thead>
           <tr>
             <th>Title</th>
