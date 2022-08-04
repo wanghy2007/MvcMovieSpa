@@ -45,6 +45,7 @@ export function ListMovie() {
               <td>
                 <NavLink tag={Link} to={`/edit-movie/${movie.id}`}>Edit</NavLink>
                 <NavLink tag={Link} to={`/details-movie/${movie.id}`}>Details</NavLink>
+                <NavLink tag={Link} to={`/delete-movie/${movie.id}`}>Delete</NavLink>
               </td>
             </tr>
           )}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { NavLink } from 'reactstrap';
 
-export function DetailsMovie() {
+export function DeleteMovie() {
     const { id } = useParams();
     const [movie, setMovie] = useState({});
     const [loading, setLoading] = useState(true);
@@ -17,12 +17,20 @@ export function DetailsMovie() {
         fetchData();
     }, [id]);
 
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        await fetch(`movies/${id}`, {
+            method: 'DELETE',
+        });
+    };
+
     if (loading)
         return <p><em>Loading...</em></p>
 
     return (
         <>
-            <h1>Details</h1>
+            <h1>Delete</h1>
+            <h3>Are you sure you want to delete this?</h3>
             <div>
                 <h4>Movie</h4>
                 <hr/>
@@ -36,10 +44,10 @@ export function DetailsMovie() {
                     <dt className="col-sm-2">Price</dt>
                     <dd className="col-sm-10">{movie.price}</dd>
                 </dl>
-            </div>
-            <div>
-                <NavLink tag={Link} to={`/edit-movie/${movie.id}`}>Edit</NavLink>
-                <NavLink tag={Link} to={`/list-movie`}>Back to list</NavLink>
+                <form onSubmit={handleSubmit}>
+                    <input type="submit" value="Delete" className="btn btn-danger" />
+                    <NavLink tag={Link} to={`/list-movie`}>Back to list</NavLink>
+                </form>
             </div>
         </>
     );

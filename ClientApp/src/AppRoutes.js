@@ -4,6 +4,7 @@ import { ListMovie } from './components/ListMovie';
 import { DetailsMovie } from "./components/DetailsMovie";
 import { EditMovie } from "./components/EditMovie";
 import { CreateMovie } from "./components/CreateMovie";
+import { DeleteMovie } from "./components/DeleteMovie";
 import { Home } from "./components/Home";
 
 const AppRoutes = [
@@ -34,6 +35,10 @@ const AppRoutes = [
   {
     path: '/create-movie',
     element: <CreateMovie />
+  },
+  {
+    path: '/delete-movie/:id',
+    element: <DeleteMovie />
   },
 ];
 
